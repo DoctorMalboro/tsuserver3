@@ -16,7 +16,7 @@ class Database:
     def setup_database(self):
         try:
             conn = sqlite3.connect(DATABASE_NAME)
-        except FileNotFoundError:
+        except sqlite3.OperationalError:
             if not os.path.exists('storage/stats/'):
                 os.makedirs('storage/stats/')
             conn = sqlite3.connect(DATABASE_NAME)
