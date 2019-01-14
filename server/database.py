@@ -311,11 +311,16 @@ class Database:
                 midc += 1
             user_arr = []
             for uid, udata in self.user_data.items():
-                user_arr.append((udata.ipid, udata.data["times_connected"],
-                                 udata.data["times_talked_idle"], udata.data["times_talked_build_recess"],
-                                 udata.data["times_talked_casing"], udata.data["times_kicked"],
-                                  udata.data["times_muted"], udata.data["times_banned"],
-                                  udata.data["times_voted"], udata.data["times_doc"]))
+                if hasattr(udata, 'ipid'):
+                    user_arr.append((udata.ipid, udata.data["times_connected"],
+                                     udata.data["times_talked_idle"],
+                                     udata.data["times_talked_build_recess"],
+                                     udata.data["times_talked_casing"],
+                                     udata.data["times_kicked"],
+                                     udata.data["times_muted"],
+                                     udata.data["times_banned"],
+                                     udata.data["times_voted"],
+                                     udata.data["times_doc"]))
             cur.execute('DELETE FROM character')
             cur.execute('DELETE FROM music')
             cur.execute('DELETE FROM user')
