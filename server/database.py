@@ -375,8 +375,9 @@ class userData:
         "times_doc": 0,
     }
 
-    def __init__(self, id):
+    def __init__(self, id, hdid):
         self.ipid = id
+        self.hdid = hdid
         self.data = {}
         for i in self.indexes:
             self.data[i] = self.indexes[i]
